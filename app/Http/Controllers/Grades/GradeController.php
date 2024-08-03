@@ -18,6 +18,7 @@ class GradeController extends Controller
 
     public function store(StoreGradeRequest $request)
     {
+        
         if (Grade::where('name->ar', $request->name_ar)->orWhere('name->en', $request->name_en)->exists()) {
             return redirect()->back()->withErrors(trans('grades_trans.name_exists'));
         }

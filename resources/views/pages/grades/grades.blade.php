@@ -28,6 +28,9 @@
 <div class="row">
 
     @include('pages.grades.modals.create')
+    @include('pages.grades.modals.edit')  
+      @include('pages.grades.modals.delete')
+
 
     <div class="col-md-12 mb-30">
         <div class="card card-statistics h-100">
@@ -75,17 +78,17 @@
                                 <td>{{ $grade->notes }}</td>
                                 <td>
                                     <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
-                                        data-target="#editGradeModal{{ $grade->id }}"
+                                        data-target="#editGradeModal" data-id="{{ $grade->id }}"
+                                        data-name_en="{{ $grade->getTranslation('name', 'en')}}"
+                                        data-name_ar="{{ $grade->getTranslation('name', 'ar')}}"
+                                         data-notes="{{ $grade->notes }}"
                                         title="{{ trans('grades_trans.edit') }}"><i class="fa fa-edit"></i></button>
+
                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                        data-target="#deleteGradeModal{{ $grade->id }}"
+                                        data-target="#deleteGradeModal" data-id="{{ $grade->id }}"
                                         title="{{ trans('grades_trans.delete') }}"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
-                            <!-- Edit Grade -->
-                            @include('pages.grades.modals.edit')
-                            <!-- delete Grade -->
-                            @include('pages.grades.modals.delete')
                         @endforeach
 
                     </tbody>
@@ -100,6 +103,29 @@
 </div>
 <!-- row closed -->
 @endsection
-@section('js')
 
-@endsection
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#editGradeModal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            var id = button.data('id')
+            var name_en = button.data('name_en')
+            var name_ar = button.data('name_ar')
+            var notes = button.data('notes')
+            var modal = $(this)
+            modal.find('.modal-body #id').val(id);
+            modal.find('.modal-body #name_en').val(name_en);
+            modal.find('.modal-body #name_ar').val(name_ar);
+            modal.find('.modal-body #notes').val(notes);
+        })
+    });
+    $(document).ready(function() {
+        $('#deleteGradeModal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            var id = button.data('id')
+            var modal = $(this)
+            modal.find('.modal-body #id').val(id);
+        })
+    });
+</script>

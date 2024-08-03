@@ -1,5 +1,5 @@
 <!-- delete_modal_Grade -->
-<div class="modal fade" id="deleteGradeModal{{ $grade->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="deleteGradeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -17,7 +17,7 @@
                     @method('delete')
                     @csrf
                     <input id="id" type="hidden" name="id" class="form-control"
-                        value="{{ $grade->id }}">
+                        value="">
                     <div class="row">
                         <div class="col">
                             <input type="text" class="form-control"
