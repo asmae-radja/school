@@ -4,7 +4,7 @@
     {{ trans('main_trans.Classrooms') }}
 @endsection
 @section('page-header')
-<!-- breadcrumb -->
+    <!-- breadcrumb -->
 @section('page-title')
     {{ trans('main_trans.Classrooms') }}
 @stop
@@ -15,6 +15,8 @@
 
 <div class="row">
     @include('pages.classrooms.modals.create')
+    @include('pages.classrooms.modals.delete')
+    @include('pages.classrooms.modals.update')
 
     <div class="col-md-12 mb-30">
         <div class="card card-statistics h-100">
@@ -56,11 +58,23 @@
                     </thead>
                     <tbody>
                         @foreach ($classrooms as $classroom)
-                        <tr>
-                            <th scope="row">{{ $loop->iteration }}</th>
-                            <td>{{ $classroom->name }}</td>
-                            <td>{{ $classroom->grade->name }}</td>
-                            <td>processes</td>
+                            <tr>
+                                <th scope="row">{{ $loop->iteration }}</th>
+                                <td>{{ $classroom->name }}</td>
+                                <td>{{ $classroom->grade->name }}</td>
+                                <td>
+                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
+                                        data-target="#editClassroomModal" data-id="{{ $classroom->id }}"
+                                        data-name_en="{{ $classroom->getTranslation('name', 'en') }}"
+                                        data-name_ar="{{ $classroom->getTranslation('name', 'ar') }}"
+                                        data-grade_id="{{ $classroom->grade_id }}"
+                                        title="{{ trans('grades_trans.edit') }}"><i class="fa fa-edit"></i></button>
+
+                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                        data-target="#deleteClassroomModal" data-id="{{ $classroom->id }}"
+                                        title="{{ trans('grades_trans.delete') }}"><i class="fa fa-trash"></i></button>
+
+                                </td>
                         @endforeach
 
 
@@ -73,4 +87,30 @@
 </div>
 <!-- row closed -->
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#editClassroomModal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            var id = button.data('id')
+            var name_en = button.data('name_en')
+            var name_ar = button.data('name_ar')
+            var grade_id = button.data('grade_id')
+            var modal = $(this)
+            modal.find('.modal-body #id').val(id);
+            modal.find('.modal-body #name_en').val(name_en);
+            modal.find('.modal-body #name_ar').val(name_ar);
+            modal.find('.modal-body #grade_id').val(grade_id);
+
+        })
+    });
+    $(document).ready(function() {
+        $('#deleteClassroomModal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            var id = button.data('id')
+            var modal = $(this)
+            modal.find('.modal-body #id').val(id);
+        })
+    });
+</script>
 @endsection

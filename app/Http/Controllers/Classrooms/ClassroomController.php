@@ -36,4 +36,27 @@ class ClassroomController extends Controller
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
+
+    public function update(Request $request)
+    {
+        try {
+            // $validated = $request->validated();
+            $classroom = Classroom::findOrFail($request->id);
+            $classroom->update([
+                'name' => ['en' => $request->name_en, 'ar' => $request->name_ar],
+                'notes' => $request->notes,
+            ]);
+            toastr()->success(trans('messages.update'));
+            return redirect()->route('classrooms.index');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+    }
+
+    public function destroy(Request $request)
+    {
+        $classroom = Classroom::findOrFail($request->id)->delete();
+        toastr()->success(trans('messages.delete'));
+        return redirect()->route('classrooms.index');
+    }
 }
