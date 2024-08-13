@@ -7,20 +7,9 @@
 @endsection
 @section('page-header')
 <!-- breadcrumb -->
-<div class="page-title">
-    <div class="row">
-        <div class="col-sm-6">
-            <h4 class="mb-0">{{ trans('main_trans.Grades') }} </h4>
-        </div>
-        <div class="col-sm-6">
-            <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-                <li class="breadcrumb-item"><a href="#" class="default-color"> {{ trans('grades_trans.home') }} </a>
-                </li>
-                <li class="breadcrumb-item active">{{ trans('main_trans.Grades') }}</li>
-            </ol>
-        </div>
-    </div>
-</div>
+@section('page-title')
+    {{ trans('main_trans.Grades') }}
+@stop
 <!-- breadcrumb -->
 @endsection
 @section('content')
@@ -28,8 +17,8 @@
 <div class="row">
 
     @include('pages.grades.modals.create')
-    @include('pages.grades.modals.edit')  
-      @include('pages.grades.modals.delete')
+    @include('pages.grades.modals.edit')
+    @include('pages.grades.modals.delete')
 
 
     <div class="col-md-12 mb-30">
@@ -79,10 +68,10 @@
                                 <td>
                                     <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
                                         data-target="#editGradeModal" data-id="{{ $grade->id }}"
-                                        data-name_en="{{ $grade->getTranslation('name', 'en')}}"
-                                        data-name_ar="{{ $grade->getTranslation('name', 'ar')}}"
-                                         data-notes="{{ $grade->notes }}"
-                                        title="{{ trans('grades_trans.edit') }}"><i class="fa fa-edit"></i></button>
+                                        data-name_en="{{ $grade->getTranslation('name', 'en') }}"
+                                        data-name_ar="{{ $grade->getTranslation('name', 'ar') }}"
+                                        data-notes="{{ $grade->notes }}" title="{{ trans('grades_trans.edit') }}"><i
+                                            class="fa fa-edit"></i></button>
 
                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
                                         data-target="#deleteGradeModal" data-id="{{ $grade->id }}"

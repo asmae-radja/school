@@ -9,4 +9,5 @@ return [
     'grade_name' => 'اسم المرحلة',
     'classroom_name_ar' => 'اسم الفصل الدراسي بالعربية',
     'classroom_name_en' => 'اسم الفصل الدراسي بالانجليزية',
+    'add_other_class' => 'إضافة فصل دراسي آخر',
 ];

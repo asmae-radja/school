@@ -43,6 +43,7 @@ Route::group(
 
         //==============================Classrooms============================
         Route::get('/classrooms', [ClassroomController::class, 'index'])->name('classrooms.index');
+        Route::post('/classrooms/store', [ClassroomController::class, 'store'])->name('classrooms.store');
     }
 );
 

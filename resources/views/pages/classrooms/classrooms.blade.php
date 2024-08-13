@@ -1,32 +1,20 @@
 @extends('layouts.master')
-@section('css')
 
 @section('title')
     {{ trans('main_trans.Classrooms') }}
-@stop
 @endsection
 @section('page-header')
 <!-- breadcrumb -->
-<div class="page-title">
-    <div class="row">
-        <div class="col-sm-6">
-            <h4 class="mb-0">{{ trans('main_trans.Classrooms') }} </h4>
-        </div>
-        <div class="col-sm-6">
-            <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-                <li class="breadcrumb-item"><a href="#" class="default-color"> {{ trans('grades_trans.home') }} </a>
-                </li>
-                <li class="breadcrumb-item active">{{ trans('main_trans.Classrooms') }}</li>
-            </ol>
-        </div>
-    </div>
-</div>
+@section('page-title')
+    {{ trans('main_trans.Classrooms') }}
+@stop
 <!-- breadcrumb -->
 @endsection
 @section('content')
 <!-- row -->
-<div class="row">
 
+<div class="row">
+    @include('pages.classrooms.modals.create')
 
     <div class="col-md-12 mb-30">
         <div class="card card-statistics h-100">
@@ -50,7 +38,7 @@
                             </span>
                         </div>
                         <div>
-                            <button class="button x-small" data-toggle="modal" data-target="#addGradeModal"><i
+                            <button class="button x-small" data-toggle="modal" data-target="#addClassroomModal"><i
                                     class="fa fa-plus" aria-hidden="true"></i>
                                 {{ trans('classrooms_trans.add_classroom') }}</button>
                         </div>
@@ -62,13 +50,19 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">{{ trans('classrooms_trans.Name_classroom') }}</th>
-                            <th scope="col">{{ trans('grades_trans.Notes') }}</th>
+                            <th scope="col">{{ trans('grades_trans.Name_grade') }}</th>
                             <th scope="col">{{ trans('grades_trans.processes') }}</th>
                         </tr>
                     </thead>
                     <tbody>
-                    
-                        
+                        @foreach ($classrooms as $classroom)
+                        <tr>
+                            <th scope="row">{{ $loop->iteration }}</th>
+                            <td>{{ $classroom->name }}</td>
+                            <td>{{ $classroom->grade->name }}</td>
+                            <td>processes</td>
+                        @endforeach
+
 
                     </tbody>
                 </table>

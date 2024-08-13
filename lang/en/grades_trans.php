@@ -4,7 +4,7 @@ return [
 
     'Name_grade' => 'Name Grade',
     'Notes' => 'Notes',
-    'processes' => 'processes',
+    'processes' => 'Processes',
     'not_found' => 'No data was found',
     'add_grade' => 'Add grade',
     'edit_grade' => 'Edit grade',

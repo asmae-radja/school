@@ -1,11 +1,11 @@
 <!-- add_modal_class -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="addClassroomModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 style="font-family: 'Cairo', sans-serif;" class="modal-title" id="exampleModalLabel">
-                    {{ trans('My_Classes_trans.add_class') }}
+                    {{ trans('classrooms_trans.add_classroom') }}
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -13,7 +13,7 @@
             </div>
             <div class="modal-body">
 
-                <form class=" row mb-30" action="{{ route('Classrooms.store') }}" method="POST">
+                <form class=" row mb-30" action="{{ route('classrooms.store') }}" method="POST">
                     @csrf
                     <div class="card-body">
                         <div class="repeater">
@@ -23,17 +23,17 @@
 
                                         <div class="col">
                                             <label for="Name"
-                                                class="mr-sm-2">{{ trans('My_Classes_trans.Name_class') }}
+                                                class="mr-sm-2">{{ trans('classrooms_trans.classroom_name_ar') }}
                                                 :</label>
-                                            <input class="form-control" type="text" name="Name" />
+                                            <input class="form-control" type="text" name="name_ar" />
                                         </div>
 
 
                                         <div class="col">
                                             <label for="Name"
-                                                class="mr-sm-2">{{ trans('') }}
+                                                class="mr-sm-2">{{ trans('classrooms_trans.classroom_name_en') }}
                                                 :</label>
-                                            <input class="form-control" type="text" name="name_class_en" />
+                                            <input class="form-control" type="text" name="name_en" />
                                         </div>
 
 
@@ -43,7 +43,7 @@
                                                 :</label>
 
                                             <div class="box">
-                                                <select class="fancyselect" name="Grade_id">
+                                                <select class="form-control" name="grade_id">
                                                     @foreach ($grades as $grade)
                                                         <option value="{{ $grade->id }}">{{ $grade->name }}</option>
                                                     @endforeach
@@ -53,8 +53,7 @@
                                         </div>
 
                                         <div class="col">
-                                            <label for="Name_en"
-                                                class="mr-sm-2">{{ trans('grades_trans.processes') }}
+                                            <label for="Name_en" class="mr-sm-2">{{ trans('grades_trans.processes') }}
                                                 :</label>
                                             <input class="btn btn-danger btn-block" data-repeater-delete type="button"
                                                 value="{{ trans('grades_trans.delete') }}" />
@@ -65,7 +64,7 @@
                             <div class="row mt-20">
                                 <div class="col-12">
                                     <input class="button" data-repeater-create type="button"
-                                        value="{{ trans('My_Classes_trans.add_row') }}" />
+                                        value="{{ trans('classrooms_trans.add_other_class') }}" />
                                 </div>
 
                             </div>
@@ -86,3 +85,4 @@
         </div>
 
     </div>
+</div>
